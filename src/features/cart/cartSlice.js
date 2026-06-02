@@ -1,24 +1,68 @@
+// import { createSlice } from "@reduxjs/toolkit";
+
+// const initialState = {
+//   items: [],
+// };
+
+// const cartSlice = createSlice({
+//   name: "cart",
+//   initialState,
+//   reducers: {
+//     addToCart: (state, action) => {
+//   console.log(action.payload);
+//   state.items.push(action.payload);
+// },
+
+//     removeFromCart: (state, action) => {
+//       state.items = state.items.filter(
+//         item => item.id !== action.payload
+//       );
+//     },
+//   },
+// });
+
+// export const { addToCart, removeFromCart } = cartSlice.actions;
+// export default cartSlice.reducer;
+
 import { createSlice } from "@reduxjs/toolkit";
-const initialState ={
-    items : [],
-}
+
+const initialState = {
+  items: [],
+};
 
 const cartSlice = createSlice({
-    name : "cart",
-    initialState,
+  name: "cart",
+  initialState,
 
-    reducers:{
-        addToCard: (state, action) => {
-            state.items.push(action.payload)
-        },
+  reducers: {
+    addToCart: (state, action) => {
+      const existingItem = state.items.find(
+        (item) => item.id === action.payload.id
+      );
 
-        removeFromeCart: (state, action)=>{        
-            state.items=state.items.filter
-        (
-            item=>item.id !==action.payload
-        )        
-      },
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        state.items.push({
+          ...action.payload,
+          quantity: 1,
+        });
+      }
     },
-})
-export const {addToCard,removeFromeCart}=cartSlice.actions
-export default cartSlice.reducer
+
+   removeFromCart: (state, action) => {
+  state.items = state.items.filter(
+    (item) => item.id !== action.payload
+  );
+}
+    
+  },
+});
+
+export const {
+  addToCart,
+  removeFromCart,
+ 
+} = cartSlice.actions;
+
+export default cartSlice.reducer;
