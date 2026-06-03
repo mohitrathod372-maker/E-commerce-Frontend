@@ -11,23 +11,23 @@ function Cart() {
   
 
   return (
-    <div  className="justify-between gap-1 items-center grid grid-cols-3">
+    <div  className="justify-between gap-1 items-center grid grid-cols-3 m-1">
       
 
       {cartItems.map((product) => (
         
-      <div key={product.id} className="  border rounded-lg p-4 shadow-md hover:shadow-xl transition duration-300 bg-white">
+      <div key={product.id} className="  p-4 shadow-md hover:shadow-xl transition duration-300 bg-white">
        <img
         className="w-full h-48 object-contain mb-4"
         src={product.thumbnail}
         alt={product.title}
      />
 
-      <h1 className="font-semibold text-lg mb-2 line-clamp-2">
+      <h1 className="font-semibold text-lg mb-2 line-clamp-1">
         {product.title}
       </h1>
 
-      <p className="text-gray-600 text-sm mb-3 line-clamp-3">
+      <p className="text-gray-600 text-sm mb-3 line-clamp-2">
         {product.description}
       </p>
 
